@@ -1,0 +1,12 @@
+qc:
+  threads: 8
+
+trim:
+  threads: 8
+  adapter: "AGATCGGAAGAGC"
+
+align:
+  threads: 16
+
+methylation:
+  threads: 12

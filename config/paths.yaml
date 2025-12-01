@@ -1,0 +1,3 @@
+fastq_dir: "data/fastq"
+reference_genome: "data/reference/hg38.fa"
+output_dir: "results"
