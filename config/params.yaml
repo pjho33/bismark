@@ -10,3 +10,10 @@ align:
 
 methylation:
   threads: 12
+
+dss:
+  threads: 4
+  smoothing: TRUE
+  smoothing_span: 500
+  delta: 0.1
+  p_threshold: 0.001

@@ -3,10 +3,11 @@ suppressPackageStartupMessages({
   library(yaml)
   library(DSS)
   library(bsseq)
+  library(rlang)
 })
 
-paths <- read_yaml("paths.yaml")
-params <- read_yaml("params.yaml")
+paths <- read_yaml("config/paths.yaml")
+params <- read_yaml("config/params.yaml")
 
 obj_dir <- file.path(paths$output_dir, "r_objects")
 bs_file <- file.path(obj_dir, "bsseq_raw.rds")

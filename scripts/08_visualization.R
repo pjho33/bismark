@@ -6,7 +6,7 @@ suppressPackageStartupMessages({
   library(ggplot2)
 })
 
-paths <- read_yaml("paths.yaml")
+paths <- read_yaml("config/paths.yaml")
 obj_dir <- file.path(paths$output_dir, "r_objects")
 plot_dir <- file.path(paths$output_dir, "plots")
 

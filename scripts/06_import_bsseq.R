@@ -7,8 +7,8 @@ suppressPackageStartupMessages({
 })
 
 # 1. 설정 로드
-paths <- read_yaml("paths.yaml")
-params <- read_yaml("params.yaml")
+paths <- read_yaml("config/paths.yaml")
+params <- read_yaml("config/params.yaml")
 
 # 2. 경로 설정
 # Python script output: results/methylation
