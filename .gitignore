@@ -1,0 +1,15 @@
+# 데이터 및 결과물 제외
+data/
+results/
+logs/
+
+# 시스템 파일 제외
+.DS_Store
+.vscode/
+__pycache__/
+*.pyc
+
+# R 관련 제외
+.Rproj.user
+.Rhistory
+.RData

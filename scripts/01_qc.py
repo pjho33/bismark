@@ -7,6 +7,10 @@ def run_fastqc():
     paths, params = load_paths_and_params()
 
     fastq_dir = Path(paths["fastq_dir"])
+    if not fastq_dir.exists():
+        print(f"[QC] FASTQ directory does not exist: {fastq_dir}")
+        return
+
     out_dir = Path(paths.get("output_dir", "results")) / "qc"
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -14,7 +18,9 @@ def run_fastqc():
 
     fastq_files = sorted(
         list(fastq_dir.glob("*.fastq")) +
-        list(fastq_dir.glob("*.fastq.gz"))
+        list(fastq_dir.glob("*.fastq.gz")) +
+        list(fastq_dir.glob("*.fq")) +
+        list(fastq_dir.glob("*.fq.gz"))
     )
 
     if not fastq_files:
@@ -30,7 +36,7 @@ def run_fastqc():
             "-o", str(out_dir),
             str(fq)
         ]
-        run_cmd(cmd, log_name="01_qc_fastqc.log")
+        run_cmd(cmd, log_name=f"01_qc_fastqc_{fq.stem}.log")
 
     print(f"[QC] FastQC finished. Results in: {out_dir}")
 

@@ -1,0 +1,20 @@
+qc:
+  threads: 8
+
+trim:
+  threads: 8
+  adapter: "AGATCGGAAGAGC"
+
+align:
+  threads: 16
+
+methylation:
+  threads: 12
+  
+  # [추가] DSS 분석 설정
+dss:
+  threads: 8
+  smoothing: TRUE
+  smoothing_span: 500
+  delta: 0.1      # DMR 기준 methylation 차이 (10%)
+  p_threshold: 0.001

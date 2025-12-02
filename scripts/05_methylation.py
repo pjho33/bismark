@@ -8,6 +8,10 @@ def run_methylation_extractor():
 
     output_root = Path(paths.get("output_dir", "results"))
     bam_dir = output_root / "bam"
+    if not bam_dir.exists():
+        print(f"[METH] BAM directory does not exist: {bam_dir}")
+        return
+
     meth_dir = output_root / "methylation"
     meth_dir.mkdir(parents=True, exist_ok=True)
 
@@ -32,7 +36,7 @@ def run_methylation_extractor():
             "-o", str(meth_dir),
             str(bam),
         ]
-        run_cmd(cmd, log_name="05_methylation_extractor.log")
+        run_cmd(cmd, log_name=f"05_methylation_extractor_{bam.stem}.log")
 
     print(f"[METH] Methylation extraction finished. Results in: {meth_dir}")
 

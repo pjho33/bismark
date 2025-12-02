@@ -21,3 +21,10 @@ echo "[RUN_ALL] Step 5: Methylation Extractor"
 python scripts/05_methylation.py
 
 echo "[RUN_ALL] DONE"
+
+# ... python pipeline ends ...
+
+echo "Running R DSS Analysis..."
+Rscript scripts/06_import_bsseq.R
+Rscript scripts/07_dss_modeling.R
+Rscript scripts/08_visualization.R

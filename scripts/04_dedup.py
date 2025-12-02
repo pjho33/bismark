@@ -8,6 +8,9 @@ def run_deduplicate():
 
     output_root = Path(paths.get("output_dir", "results"))
     bam_dir = output_root / "bam"
+    if not bam_dir.exists():
+        print(f"[DEDUP] BAM directory does not exist: {bam_dir}")
+        return
 
     bam_files = sorted(list(bam_dir.glob("*.bam")))
 
@@ -21,9 +24,10 @@ def run_deduplicate():
         cmd = [
             "deduplicate_bismark",
             "--bam",
+            "--output_dir", str(bam_dir),
             str(bam)
         ]
-        run_cmd(cmd, log_name="04_dedup.log")
+        run_cmd(cmd, log_name=f"04_dedup_{bam.stem}.log")
 
     print("[DEDUP] Deduplication finished. Dedup BAMs (*.deduplicated.bam) created.")
 
