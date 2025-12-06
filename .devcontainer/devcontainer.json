@@ -1,0 +1,41 @@
+{
+  "name": "NGS Methylation Pipeline",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "REditorSupport.r",
+        "RDebugger.r-debugger",
+        "ms-toolsai.jupyter",
+        "redhat.vscode-yaml",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/opt/conda/bin/python",
+        "r.rterm.linux": "/usr/bin/R",
+        "r.bracketedPaste": true,
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  "postCreateCommand": "pip install -e . 2>/dev/null || true",
+  "remoteUser": "vscode",
+  "mounts": [
+    "source=${localWorkspaceFolder}/data,target=/workspace/data,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/results,target=/workspace/results,type=bind,consistency=cached"
+  ],
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+}
