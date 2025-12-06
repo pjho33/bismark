@@ -17,3 +17,9 @@ dss:
   smoothing_span: 500
   delta: 0.1
   p_threshold: 0.001
+  # DMR calling parameters
+  dmr_min_len: 50
+  dmr_min_cg: 3
+  dmr_dis_merge: 100
+  # Group assignment pattern (regex for Control samples)
+  control_pattern: "[0-9]+N|Control|WT|Normal"
