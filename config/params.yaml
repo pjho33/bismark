@@ -23,3 +23,14 @@ dss:
   dmr_dis_merge: 100
   # Group assignment pattern (regex for Control samples)
   control_pattern: "[0-9]+N|Control|WT|Normal"
+
+dmrseq:
+  threads: 4
+  cutoff: 0.05
+  min_num_region: 3
+  bp_span: 1000
+  max_gap: 1000
+  max_perms: 10
+  # Coverage filtering (memory optimization)
+  min_coverage: 2
+  min_samples: 3  # or use percentage like 0.5 for 50%
