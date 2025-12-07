@@ -1,41 +1,15 @@
 {
-  "name": "NGS Methylation Pipeline",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": ".."
-  },
-  "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "installZsh": true,
-      "configureZshAsDefaultShell": true
-    },
-    "ghcr.io/devcontainers/features/git:1": {}
-  },
+  "name": "NGS-DSS Analysis Env",
+  "image": "bioconductor/bioconductor_docker:RELEASE_3_18",
+  "onCreateCommand": "apt-get update && apt-get install -y libhdf5-dev libcurl4-openssl-dev libssl-dev libxml2-dev python3 python3-pip",
+  "postCreateCommand": "R -e \"BiocManager::install(c('DSS', 'bsseq', 'rhdf5', 'HDF5Array', 'dmrseq', 'data.table', 'gtools', 'ggplot2', 'tidyverse'), ask=FALSE)\"",
   "customizations": {
     "vscode": {
       "extensions": [
-        "ms-python.python",
-        "ms-python.vscode-pylance",
         "REditorSupport.r",
-        "RDebugger.r-debugger",
-        "ms-toolsai.jupyter",
-        "redhat.vscode-yaml",
-        "eamodio.gitlens"
-      ],
-      "settings": {
-        "python.defaultInterpreterPath": "/opt/conda/bin/python",
-        "r.rterm.linux": "/usr/bin/R",
-        "r.bracketedPaste": true,
-        "editor.formatOnSave": true
-      }
+        "ms-python.python"
+      ]
     }
   },
-  "postCreateCommand": "pip install -e . 2>/dev/null || true",
-  "remoteUser": "vscode",
-  "mounts": [
-    "source=${localWorkspaceFolder}/data,target=/workspace/data,type=bind,consistency=cached",
-    "source=${localWorkspaceFolder}/results,target=/workspace/results,type=bind,consistency=cached"
-  ],
-  "workspaceFolder": "/workspace",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  "remoteUser": "rstudio"
 }
